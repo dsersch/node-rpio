@@ -23,7 +23,7 @@
         console.log(e.target.id)
         console.log(e.target.dataset.key)
 
-        $.ajax({url: `/${e.target.dataset.key}/${e.target.id}`,
+        $.ajax({url: `/${e.target.dataset.key}`,
                 method: 'get'})
             .done((res)=>{
                 console.log(res)

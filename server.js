@@ -8,8 +8,8 @@ app.get('/', (req, res) => {
     res.sendFile('controls.html', {root:__dirname})
 })
 
-app.get('/on/:relay-number', (req, res) => {
-    res.json({message: `You want to turn relay ${req.params.relay-number} on`})
+app.get('/:io', (req, res) => {
+    res.json({message: `You want to turn a relay ${req.params.io}`})
 })
 
 app.listen(PORT, (err) => {
