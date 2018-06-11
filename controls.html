@@ -14,8 +14,8 @@
 <body>
     <div class="relay-control">
         <h3 class="relay-name">relay 1</h3>
-        <button class="on" data-key="on" id="1">ON</button>
-        <button class="off" data-key="off" id="1">OFF</button> 
+        <button class="on" data-key="1" id="on-1">ON</button>
+        <button class="off" data-key="1" id="off-1">OFF</button> 
     </div>
     <script>
         
@@ -23,13 +23,36 @@
         console.log(e.target.id)
         console.log(e.target.dataset.key)
 
-        $.ajax({url: `/${e.target.dataset.key}`,
+        $.ajax({url: `/on/${e.target.dataset.key}`,
                 method: 'get'})
             .done((res)=>{
                 console.log(res)
-            })
+            }
+        )
     }
-    window.addEventListener("click", sendOnSignal)
+
+    function sendOffSignal(e) {
+        $.ajax({url: `/off/${e.target.dataset.key}`,
+                method: 'get'})
+            .done((res)=>{
+                console.log(res)
+            }
+        )
+    }
+
+    const onButtons = document.querySelectorAll('.on')
+    
+    onButtons.forEach(btn => {
+        btn.addEventListener('click', sendOnSignal)
+    })
+    
+    const offButtons = document.querySelectorAll('.off')
+
+    offButtons.forEach(btn => {
+        btn.addEventListener('click', sendOffSignal)
+    })
+    
+
     </script>
 </body>
 </html>

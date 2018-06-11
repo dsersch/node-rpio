@@ -8,12 +8,12 @@ app.get('/', (req, res) => {
     res.sendFile('controls.html', {root:__dirname})
 })
 
-app.get('/on', (req, res) => {
-    res.json({message: `You want to turn a relay on...`})
+app.get('/on/:id', (req, res) => {
+    res.json({message: `You want to turn relay ${req.params.id} on...`})
 })
 
-app.get('/off', (req, res) => {
-    res.json({message: `You want to turn a relay off...`})
+app.get('/off/:id', (req, res) => {
+    res.json({message: `You want to turn relay ${req.params.id} off...`})
 })
 
 app.listen(PORT, (err) => {
