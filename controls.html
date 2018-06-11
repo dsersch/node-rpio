@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.js"
+        integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+        crossorigin="anonymous">
+    </script>
+</head>
+<body>
+    <div class="relay-control">
+        <h3 class="relay-name">relay 1</h3>
+        <button class="on" data-key="on" id="1">ON</button>
+        <button class="off" data-key="off" id="1">OFF</button> 
+    </div>
+    <script>
+        
+    function sendOnSignal(e) {
+        console.log(e.target.id)
+        console.log(e.target.dataset.key)
+
+        $.ajax({url: `/${e.target.dataset.key}/${e.target.id}`,
+                method: 'get'})
+            .done((res)=>{
+                console.log(res)
+            })
+    }
+    window.addEventListener("click", sendOnSignal)
+    </script>
+</body>
+</html>
