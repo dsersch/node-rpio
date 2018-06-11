@@ -4,7 +4,7 @@ const
     rpio = require('rpio'),
     PORT = 3001
 
-app.get('/', (res) => {
+app.get('/', (req, res) => {
     res.sendFile('controls.html', {root:__dirname})
 })
 
