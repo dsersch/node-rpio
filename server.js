@@ -4,12 +4,16 @@ const
     rpio = require('rpio'),
     PORT = 3001
 
-app.get('/', (req, res) => {
+app.get('/', (res) => {
     res.sendFile('controls.html', {root:__dirname})
 })
 
-app.get('/:io', (req, res) => {
-    res.json({message: `You want to turn a relay ${req.params.io}`})
+app.get('/on', (req, res) => {
+    res.json({message: `You want to turn a relay on...`})
+})
+
+app.get('/off', (req, res) => {
+    res.json({message: `You want to turn a relay off...`})
 })
 
 app.listen(PORT, (err) => {
