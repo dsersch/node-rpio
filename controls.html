@@ -122,7 +122,9 @@
     
     const toggles = document.querySelectorAll('.power-toggle')
 
-    toggles.addEventListener('input', toggleRelay)
+    toggles.forEach(toggle => {
+        toggle.addEventListener('input', toggleRelay)
+    })
 
     </script>
 </body>
