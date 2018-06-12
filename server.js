@@ -1,7 +1,8 @@
 const 
     express = require('express'),
     app = express(),
-    rpio = require('rpio'),
+    Gpio = require('onoff'),
+    relay1 = new Gpio(5, 'out')
     PORT = 3001
 
 app.get('/', (req, res) => {
@@ -9,22 +10,21 @@ app.get('/', (req, res) => {
 })
 
 app.get('/on/:id', (req, res) => {
-
-    rpio.open(2, rpio.OUTPUT, rpio.LOW)
-
-    for (let i = 0; i < 5; i++) {
-        rpio.write(2, rpio.HIGH);
-        rpio.sleep(500);
-
-        rpio.write(2, rpio.LOW)
-        rpio.sleep(500)
+    if (relay1.readSync() === 0) {
+        relay1.writeSync(1)
+        res.json({message: 'relay 1 is on...'})
+    } else {
+        res.json({message: 'relay is already on...'})
     }
-
-    res.json({message: `You want to turn relay ${req.params.id} on...`})
 })
 
 app.get('/off/:id', (req, res) => {
-    res.json({message: `You want to turn relay ${req.params.id} off...`})
+    if (relay1.readSync() === 1) {
+        relay1.writeSync(0)
+        res.json({message: 'relay 1 is off...'})
+    } else {
+        res.json({message: 'relay is already off...'})
+    }
 })
 
 app.listen(PORT, (err) => {
