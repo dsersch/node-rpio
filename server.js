@@ -14,11 +14,15 @@ const
 
 const relays = [relay1, relay2, relay3, relay4, relay5, relay6, relay7, relay8]
 
+for (let i = 0; i < relays.length; i++) {
+    relays[i].writeSync(1)
+}
+
 app.get('/', (req, res) => {
     res.sendFile('controls.html', {root:__dirname})
 })
 
-relay1.writeSync(1)
+
 
 app.get('/on/:id', (req, res) => {
     if (relays[req.params.id].readSync() === 1) {
