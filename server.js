@@ -9,6 +9,8 @@ app.get('/', (req, res) => {
     res.sendFile('controls.html', {root:__dirname})
 })
 
+relay1.writeSync(0);
+
 app.get('/on/:id', (req, res) => {
     if (relay1.readSync() === 0) {
         relay1.writeSync(1)
