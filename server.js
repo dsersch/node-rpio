@@ -1,7 +1,7 @@
 const 
     express = require('express'),
     app = express(),
-    Gpio = require('onoff'),
+    Gpio = require('onoff').Gpio,
     relay1 = new Gpio(5, 'out')
     PORT = 3001
 
