@@ -9,11 +9,11 @@ app.get('/', (req, res) => {
     res.sendFile('controls.html', {root:__dirname})
 })
 
-relay1.writeSync(0);
+relay1.writeSync(1)
 
 app.get('/on/:id', (req, res) => {
-    if (relay1.readSync() === 0) {
-        relay1.writeSync(1)
+    if (relay1.readSync() === 1) {
+        relay1.writeSync(0)
         res.json({message: 'relay 1 is on...'})
     } else {
         res.json({message: 'relay is already on...'})
@@ -21,8 +21,8 @@ app.get('/on/:id', (req, res) => {
 })
 
 app.get('/off/:id', (req, res) => {
-    if (relay1.readSync() === 1) {
-        relay1.writeSync(0)
+    if (relay1.readSync() === 0) {
+        relay1.writeSync(1)
         res.json({message: 'relay 1 is off...'})
     } else {
         res.json({message: 'relay is already off...'})
